@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Myra Auma – Fresh Produce & Medical Supplies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #1B4332;
+      --green-light: #2D6A4F;
+      --cream: #FDF6EC;
+      --gold: #D4A017;
+      --gold-light: #F0C040;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--cream); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--green) !important;
+      padding: 0.5rem 1.2rem; border-radius: 6px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--green) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 60%, #40916C 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .hero-content { position: relative; max-width: 700px; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(212,160,23,0.2);
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+      padding: 0.3rem 1rem; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: var(--white);
+      line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.1rem; line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--green);
+      padding: 0.9rem 2rem; border-radius: 8px;
+      font-weight: 700; font-size: 1rem;
+      text-decoration: none; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.5); color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: 1rem;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .hero-stats {
+      display: flex; gap: 2rem; justify-content: center;
+      margin-top: 4rem; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--gold); font-weight: 900;
+    }
+    .stat-label { color: rgba(255,255,255,0.6); font-size: 0.8rem; margin-top: 0.2rem; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      color: var(--gold); font-size: 0.78rem;
+      font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--green); margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--muted); max-width: 560px; line-height: 1.7; }
+
+    /* ABOUT */
+    .about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; margin-top: 3rem;
+    }
+    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+    .about-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+    .feature {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--cream); padding: 1rem 1.2rem; border-radius: 10px;
+      border-left: 3px solid var(--gold);
+    }
+    .feature-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .feature-title { font-weight: 600; font-size: 0.95rem; color: var(--green); }
+    .feature-desc { font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem; }
+    .about-visual {
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 16px; padding: 3rem 2rem;
+      text-align: center; color: var(--white);
+    }
+    .about-visual-emoji { font-size: 4rem; margin-bottom: 1rem; }
+    .about-visual h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .about-visual p { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.6; }
+
+    /* PRODUCTS */
+    .products { background: var(--cream); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .product-card {
+      background: var(--white); border-radius: 14px;
+      overflow: hidden; transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+    .product-img {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .product-body { padding: 1.2rem 1.4rem 1.4rem; }
+    .product-category {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.4rem;
+    }
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+    .product-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
+    .product-order {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #25D366; color: var(--white);
+      padding: 0.6rem 1.1rem; border-radius: 7px;
+      font-weight: 600; font-size: 0.85rem;
+      text-decoration: none; transition: background 0.2s;
+      width: fit-content;
+    }
+    .product-order:hover { background: #1ebe5d; }
+
+    /* WHY US */
+    .why { background: var(--green); }
+    .why .section-title { color: var(--white); }
+    .why .section-sub { color: rgba(255,255,255,0.65); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; padding: 1.8rem 1.4rem;
+      text-align: center; transition: background 0.2s;
+    }
+    .why-card:hover { background: rgba(255,255,255,0.12); }
+    .why-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+    .why-title { font-weight: 700; color: var(--gold); margin-bottom: 0.4rem; }
+    .why-desc { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    /* CONTACT */
+    .contact { background: var(--white); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; margin-top: 3rem; align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 1.2rem;
+      background: var(--cream); border-radius: 10px;
+    }
+    .contact-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .contact-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .contact-value { font-weight: 600; color: var(--green); margin-top: 0.1rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%; padding: 0.85rem 1rem;
+      border: 1.5px solid #e5e7eb; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      background: var(--cream); color: var(--text);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus { border-color: var(--green); }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .submit-btn {
+      background: var(--green); color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 8px;
+      border: none; font-weight: 700; font-size: 1rem;
+      cursor: pointer; transition: background 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .submit-btn:hover { background: var(--green-light); }
+
+    /* FOOTER */
+    footer {
+      background: #0d2318; color: rgba(255,255,255,0.6);
+      text-align: center; padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer span { color: var(--gold); }
+
+    /* WHATSAPP FLOAT */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: #25D366; color: var(--white);
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+      z-index: 200; transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Myra Auma</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">🌍 Local & Export Supply</div>
+    <h1>Fresh Produce &<br><span>Medical Supplies</span><br>You Can Trust</h1>
+    <p>From farm-fresh fruits & premium cashew nuts to affordable wheelchairs & reliable medical equipment — we deliver quality to your doorstep.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">🛒 Shop Now</a>
+      <a href="#contact" class="btn-outline">📞 Get a Quote</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Product Categories</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Quality Guaranteed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="section-tag">Who We Are</div>
+    <h2 class="section-title">Your Trusted Supplier in Kenya</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>At Myra Auma, we believe everyone deserves access to fresh, high-quality produce and essential medical supplies — at prices that make sense.</p>
+        <p>We source the freshest fruits and vegetables directly from local farmers, supply premium cashew nuts for export, and provide affordable medical equipment to individuals and institutions across Kenya.</p>
+        <div class="about-features">
+          <div class="feature">
+            <div class="feature-icon">🌱</div>
+            <div>
+              <div class="feature-title">Farm Fresh Produce</div>
+              <div class="feature-desc">Direct from trusted local farmers to you</div>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🚚</div>
+            <div>
+              <div class="feature-title">Fast Delivery</div>
+              <div class="feature-desc">Prompt delivery across Kenya</div>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">💰</div>
+            <div>
+              <div class="feature-title">Affordable Prices</div>
+              <div class="feature-desc">Competitive pricing with no compromise on quality</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-visual-emoji">🌿</div>
+        <h3>Quality in Every Product</h3>
+        <p>We carefully select every item we sell — from the crunchiest cashews to the most reliable medical equipment — because your satisfaction is our reputation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-inner">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our Products</h2>
+    <p class="section-sub">Tap any product to order directly via WhatsApp — quick, easy, and no hassle.</p>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-img" style="background: #f0fdf4;">🥦</div>
+        <div class="product-body">
+          <div class="product-category">Fresh Produce</div>
+          <div class="product-name">Fresh Fruits & Vegetables</div>
+          <div class="product-desc">Farm-fresh local and export-grade fruits and vegetables. Sourced daily for maximum freshness and nutritional value.</div>
+          <a href="https://wa.me/254728974255?text=Hi%20Myra!%20I%27d%20like%20to%20order%20Fresh%20Fruits%20%26%20Vegetables%20%F0%9F%A5%A6" class="product-order" target="_blank">💬 Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background: #fefce8;">🥜</div>
+        <div class="product-body">
+          <div class="product-category">Export Nuts</div>
+          <div class="product-name">Premium Cashew Nuts</div>
+          <div class="product-desc">Fresh, crunchy & healthy cashew nuts — available raw and roasted. Export-quality supply for bulk and retail orders.</div>
+          <a href="https://wa.me/254728974255?text=Hi%20Myra!%20I%27d%20like%20to%20order%20Premium%20Cashew%20Nuts%20%F0%9F%A5%9C" class="product-order" target="_blank">💬 Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background: #eff6ff;">♿</div>
+        <div class="product-body">
+          <div class="product-category">Medical Equipment</div>
+          <div class="product-name">Affordable Wheelchairs</div>
+          <div class="product-desc">High-quality wheelchairs for all needs and budgets. Suitable for individuals, hospitals, and care facilities.</div>
+          <a href="https://wa.me/254728974255?text=Hi%20Myra!%20I%27d%20like%20to%20inquire%20about%20Wheelchairs%20%E2%99%BF" class="product-order" target="_blank">💬 Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img" style="background: #fdf2f8;">🏥</div>
+        <div class="product-body">
+          <div class="product-category">Medical Equipment</div>
+          <div class="product-name">Reliable Medical Equipment</div>
+          <div class="product-desc">A wide range of trusted medical supplies and equipment at affordable prices for homes, clinics, and hospitals.</div>
+          <a href="https://wa.me/254728974255?text=Hi%20Myra!%20I%27d%20like%20to%20inquire%20about%20Medical%20Equipment%20%F0%9F%8F%A5" class="product-order" target="_blank">💬 Order on WhatsApp</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <div class="section-tag" style="color: var(--gold-light);">Why Choose Us</div>
+    <h2 class="section-title">The Myra Auma Difference</h2>
+    <p class="section-sub">We're not just a supplier — we're a partner you can count on.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">✅</div>
+        <div class="why-title">Verified Quality</div>
+        <div class="why-desc">Every product is carefully checked before it reaches you.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <div class="why-title">WhatsApp Orders</div>
+        <div class="why-desc">Order instantly via WhatsApp — no complicated process.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🚀</div>
+        <div class="why-title">Fast Delivery</div>
+        <div class="why-desc">We get your order to you quickly and reliably.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">Trusted by 500+</div>
+        <div class="why-desc">Hundreds of satisfied clients across Kenya trust us.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Order or Ask a Question</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-label">WhatsApp / Phone</div>
+            <div class="contact-value">+254 728 974 255</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Kenya 🇰🇪</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Business Hours</div>
+            <div class="contact-value">Mon – Sat, 8am – 6pm</div>
+          </div>
+        </div>
+        <a href="https://wa.me/254728974255?text=Hi%20Myra!%20I%27d%20like%20to%20place%20an%20order." class="btn-primary" target="_blank" style="width:fit-content; margin-top:0.5rem;">
+          💬 Chat on WhatsApp
+        </a>
+      </div>
+      <div>
+        <div class="contact-form">
+          <input type="text" placeholder="Your Name" />
+          <input type="tel" placeholder="Your Phone Number" />
+          <select>
+            <option value="" disabled selected>Select a Product</option>
+            <option>Fresh Fruits & Vegetables</option>
+            <option>Premium Cashew Nuts</option>
+            <option>Affordable Wheelchairs</option>
+            <option>Medical Equipment</option>
+            <option>Other / Multiple Products</option>
+          </select>
+          <textarea placeholder="Tell us what you need — quantity, delivery location, any questions..."></textarea>
+          <button class="submit-btn" onclick="submitForm()">📩 Send Inquiry</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Myra Auma</span> · Fresh Produce & Medical Supplies · Kenya 🇰🇪</p>
+  <p style="margin-top:0.4rem;">Built with ❤️ for quality and affordability</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/254728974255" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+  function submitForm() {
+    const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea, .contact-form select');
+    const name = inputs[0].value.trim();
+    const phone = inputs[1].value.trim();
+    const product = inputs[2].value;
+    const message = inputs[3].value.trim();
+
+    if (!name || !phone || !product || !message) {
+      alert('Please fill in all fields before sending.');
+      return;
+    }
+
+    const text = `Hi Myra! 👋%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AProduct: ${encodeURIComponent(product)}%0AMessage: ${encodeURIComponent(message)}`;
+    window.open(`https://wa.me/254728974255?text=${text}`, '_blank');
+  }
+</script>
+
+</body>
+</html>
